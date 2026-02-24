@@ -6,7 +6,7 @@
 
 **Sistema de Alerta Temprana para la Deserción Escolar**
 
-[**Ver demo en vivo →**](https://EiTinchoZ.github.io/SENA/)
+[**Ver demo en vivo →**](https://sena-snowy.vercel.app/)
 &nbsp;·&nbsp;
 [Reportar problema](https://github.com/EiTinchoZ/SENA/issues)
 
