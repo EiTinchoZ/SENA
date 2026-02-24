@@ -30,6 +30,7 @@ import { AdminToggle }             from '@/components/admin/AdminToggle';
 
 // Utilitarios del backlog
 import { KeyboardHint }          from '@/components/ui/KeyboardHint';
+import { SenaAssistant }         from '@/components/ui/SenaAssistant';
 import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
 
 import type { SenaProfile } from '@/types';
@@ -81,6 +82,9 @@ function DashboardContent({ profile }: { profile: SenaProfile | null }) {
 
       {/* Hint de navegación por teclado */}
       <KeyboardHint />
+
+      {/* Asistente SENA — explica cada sección en tiempo real */}
+      <SenaAssistant profile={profile} />
     </>
   );
 }
