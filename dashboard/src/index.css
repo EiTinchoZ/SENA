@@ -120,3 +120,37 @@
     animation: spin 0.8s linear infinite;
   }
 }
+
+/* ============================================================
+   MODO CLARO
+   Técnica: filter invert + hue-rotate sobre #root.
+   Las imágenes y videos reciben doble-inversión para conservar
+   sus colores naturales. Efectivo para presentaciones en sala
+   iluminada sin modificar cada componente individualmente.
+   ============================================================ */
+
+html.light-mode,
+html.light-mode body {
+  background-color: #F0F4F8 !important;
+}
+
+html.light-mode #root {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Doble inversión: vuelven a sus colores originales */
+html.light-mode img,
+html.light-mode video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Scrollbar en modo claro */
+html.light-mode ::-webkit-scrollbar-track {
+  background: #E2E8F0;
+}
+html.light-mode ::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+}
+html.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: #64748B;
+}

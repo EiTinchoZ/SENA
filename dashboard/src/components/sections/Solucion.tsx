@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Database, Brain, Bell, MessageSquare, ShieldCheck, ArrowRight, LayoutDashboard, Smartphone } from 'lucide-react';
 import { SectionWrapper, SectionHeader } from '@/components/ui/SectionWrapper';
-import { proyectoData } from '@/data/project';
+import { useAdmin } from '@/context/AdminContext';
 
 const FLOW_ICONS = {
   datos:        Database,
@@ -72,7 +72,8 @@ export function Solucion() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
-  const { flujoSolucion } = proyectoData;
+  const { content } = useAdmin();
+  const { flujoSolucion } = content.proyecto;
 
   return (
     <SectionWrapper id="solucion" className="bg-[#080E1A]">
@@ -209,7 +210,7 @@ export function Solucion() {
       </motion.div>
 
       {/* Diferenciación competitiva */}
-      {proyectoData.diferenciacion && (
+      {content.proyecto.diferenciacion && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -224,7 +225,7 @@ export function Solucion() {
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#1E2E48]" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
-            {proyectoData.diferenciacion.map((item, i) => {
+            {content.proyecto.diferenciacion.map((item, i) => {
               const Icon = DIFER_ICONS[item.icon] ?? Bell;
               const theme = DIFER_THEME[i % DIFER_THEME.length];
               return (

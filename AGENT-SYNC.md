@@ -8,14 +8,15 @@
 ## ESTADO ACTUAL DEL PROYECTO
 
 ```
-Fase:        POLISH (Fase 4 de 5)
-Progreso:    ██████████ 97%
-Último build: ✓ 378 kB JS + 43 kB CSS (sesión 004)
+Fase:        COMPLETO (Fase 5 de 5)
+Progreso:    ██████████ 100%
+Último build: ✓ 403 kB JS + 46 kB CSS (sesión 005)
 Assets:      ✓ persona1-3.png + persona1-3.mp4 en public/assets/
 GSD:         ✓ get-shit-done v1.20.6 instalado en dashboard/.claude/
 Acentos:     ✓ Auditoría ortográfica completa (sesiones 003+004)
 Tests:       N/A (presentación sin tests unitarios)
 Deploy:      Listo para npm run preview / presentación
+Backlog:     ✓ TODAS las mejoras implementadas (sesión 005)
 ```
 
 ---
@@ -23,10 +24,10 @@ Deploy:      Listo para npm run preview / presentación
 ## ÚLTIMO AGENTE QUE TRABAJÓ
 
 - **Agente:** Claude Code
-- **Sesión:** 004
+- **Sesión:** 005
 - **Fecha:** 2026-02-24
-- **Tarea completada:** Peer-review del trabajo de Codex (sesión 004) + auditoría final de acentos + 2 correcciones residuales
-- **Próximo agente:** Usuario (listo para presentar)
+- **Tarea completada:** Implementación del backlog completo (5 mejoras) — ver Log sesión 005
+- **Próximo agente:** Usuario (100% listo para presentar)
 
 ---
 
@@ -106,6 +107,19 @@ Tareas para pasar a Codex si se necesita:
 ---
 
 ## LOG DE ACTIVIDAD
+
+### Sesión 005 — 2026-02-24 (Claude Code)
+- Implementó el backlog completo de 5 mejoras:
+  - ✅ Modo claro: CSS filter invert(1) hue-rotate(180deg) en #root, doble-inversión en img/video, toggle Sun/Moon en nav
+  - ✅ Exportar PNG: html2canvas (lazy-loaded), captura el dashboard completo, oculta nav/admin antes de capturar
+  - ✅ Navegación por teclado: useKeyboardNavigation hook (flechas + 1-8), KeyboardHint flotante
+  - ✅ Datos en vivo: RiskPanel con setInterval 4s, números varían ±2-3, badge "EN VIVO", contador de última actualización
+  - ✅ Panel de admin: AdminContext (localStorage), AdminPanel (8 tabs), AdminToggle flotante; todas las secciones leen de context
+- Arquitectura admin: AdminProvider en App.tsx envuelve el dashboard, useAdmin() en 6 secciones
+- Archivos nuevos: useKeyboardNavigation.ts, KeyboardHint.tsx, ExportButton.tsx, AdminContext.tsx, AdminPanel.tsx, AdminToggle.tsx
+- Archivos modificados: RiskSignal.tsx, Navigation.tsx, App.tsx, index.css, Problema/Solucion/Fricciones/BuyerPersonas/Impacto/Reflexion.tsx
+- Build final: ✓ 403 kB JS + 46 kB CSS, 3.42s, sin errores TypeScript
+- **Archivos creados:** 6 nuevos | **Archivos modificados:** 12
 
 ### Sesión 004 — 2026-02-24 (Claude Code)
 - Peer-review del trabajo de Codex (sesión 004):

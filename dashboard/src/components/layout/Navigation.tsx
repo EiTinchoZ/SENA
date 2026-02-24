@@ -1,13 +1,15 @@
 // ============================================================
 // ALERTA-ED — Navigation
-// Barra de navegación fija con scroll spy y perfil de SENA
+// Barra de navegación fija con scroll spy, toggle de tema
+// y botón de exportar
 // ============================================================
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, AlertTriangle } from 'lucide-react';
+import { Menu, X, AlertTriangle, Sun, Moon } from 'lucide-react';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { scrollToSection, cn } from '@/lib/utils';
+import { ExportButton } from '@/components/ui/ExportButton';
 import type { SenaProfile } from '@/types';
 
 const NAV_ITEMS = [
@@ -31,9 +33,11 @@ const ROLE_LABELS: Record<string, string> = {
 
 interface NavigationProps {
   profile: SenaProfile | null;
+  theme: 'dark' | 'light';
+  onToggleTheme: () => void;
 }
 
-export function Navigation({ profile }: NavigationProps) {
+export function Navigation({ profile, theme, onToggleTheme }: NavigationProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const sectionIds = NAV_ITEMS.map((i) => i.id);
   const activeSection = useScrollSpy(sectionIds);
@@ -45,7 +49,7 @@ export function Navigation({ profile }: NavigationProps) {
 
   return (
     <>
-      <header className="fixed top-2 left-0 right-0 z-50 px-4">
+      <header data-export-hide className="fixed top-2 left-0 right-0 z-50 px-4">
         <nav className="max-w-7xl mx-auto bg-[#080E1A]/90 backdrop-blur-xl border border-[#1E2E48] rounded-2xl px-5 py-3 flex items-center justify-between shadow-elevated">
           {/* Logo */}
           <button
@@ -78,15 +82,37 @@ export function Navigation({ profile }: NavigationProps) {
             ))}
           </div>
 
-          {/* Perfil de SENA + menú mobile */}
-          <div className="flex items-center gap-3">
+          {/* Acciones + perfil + menú mobile */}
+          <div className="flex items-center gap-2">
+            {/* Toggle modo claro/oscuro */}
+            <motion.button
+              onClick={onToggleTheme}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden sm:flex w-8 h-8 items-center justify-center rounded-lg text-[#7CB3E0] hover:text-[#EFF6FF] hover:bg-white/5 border border-transparent hover:border-[#1E2E48] transition-all duration-200"
+              title={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-3.5 h-3.5" />
+              ) : (
+                <Moon className="w-3.5 h-3.5" />
+              )}
+            </motion.button>
+
+            {/* Botón exportar PNG */}
+            <div className="hidden sm:flex">
+              <ExportButton />
+            </div>
+
+            {/* Badge de perfil SENA */}
             {profile && (
-              <span className="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-[#3D6080] bg-[#111D30] border border-[#1E2E48] rounded-full px-3 py-1">
+              <span className="hidden lg:flex items-center gap-1.5 text-[11px] font-medium text-[#3D6080] bg-[#111D30] border border-[#1E2E48] rounded-full px-3 py-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                 {ROLE_LABELS[profile.role] ?? 'Vista: General'}
               </span>
             )}
 
+            {/* Menú hamburguesa mobile */}
             <button
               onClick={() => setMobileOpen((v) => !v)}
               className="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-[#7CB3E0] hover:text-[#EFF6FF] hover:bg-white/5 transition-colors"
@@ -107,7 +133,7 @@ export function Navigation({ profile }: NavigationProps) {
               transition={{ duration: 0.2 }}
               className="lg:hidden mt-2 max-w-7xl mx-auto bg-[#080E1A]/95 backdrop-blur-xl border border-[#1E2E48] rounded-2xl p-3 shadow-elevated"
             >
-              <div className="grid grid-cols-2 gap-1">
+              <div className="grid grid-cols-2 gap-1 mb-3">
                 {NAV_ITEMS.map((item) => (
                   <button
                     key={item.id}
@@ -122,6 +148,17 @@ export function Navigation({ profile }: NavigationProps) {
                     {item.label}
                   </button>
                 ))}
+              </div>
+              {/* Acciones en mobile */}
+              <div className="flex items-center gap-2 pt-2 border-t border-[#162035]">
+                <button
+                  onClick={onToggleTheme}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[#7CB3E0] hover:text-[#EFF6FF] hover:bg-white/5 transition-colors"
+                >
+                  {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+                  <span>{theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}</span>
+                </button>
+                <ExportButton />
               </div>
             </motion.div>
           )}

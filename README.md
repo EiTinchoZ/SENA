@@ -1,94 +1,146 @@
-# SENA - ALERTA-ED
+<div align="center">
 
-![Estado](https://img.shields.io/badge/estado-listo%20para%20presentacion-16a34a)
-![Stack](https://img.shields.io/badge/stack-React%2018%20%7C%20TypeScript%20%7C%20Vite-2563eb)
-![Modo](https://img.shields.io/badge/modo-100%25%20offline-0f766e)
-![Licencia](https://img.shields.io/badge/licencia-propietaria-b91c1c)
+<img src="assets/github/logo-sena-alertaed.png" alt="ALERTA-ED" width="80" />
 
-![SENA Cover](assets/github/cover-sena-alertaed.png)
+# ALERTA-ED
 
-<p align="center">
-  <img src="assets/github/logo-sena-alertaed.png" alt="SENA Logo" width="240" />
-</p>
+**Sistema de Alerta Temprana para la Deserción Escolar**
 
-Dashboard/presentacion web interactiva para demostrar un sistema de alerta temprana contra la desercion escolar, con enfoque preventivo, narrativa visual y UX orientada a pitch academico/profesional.
+[**Ver demo en vivo →**](https://EiTinchoZ.github.io/SENA/)
+&nbsp;·&nbsp;
+[Reportar problema](https://github.com/EiTinchoZ/SENA/issues)
 
-## Vision del proyecto
+<br />
 
-**ALERTA-ED** propone detectar riesgo de abandono antes de que sea irreversible.  
-La experiencia integra:
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white&style=flat-square)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black&style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white&style=flat-square)
+![Tailwind](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white&style=flat-square)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-EF0080?logo=framer&logoColor=white&style=flat-square)
+![Estado](https://img.shields.io/badge/estado-listo%20para%20presentar-16a34a?style=flat-square)
+![Offline](https://img.shields.io/badge/100%25-offline-0f766e?style=flat-square)
 
-- Mascota IA **SENA** con onboarding por rol.
-- Visualizaciones y secciones narrativas para presentar el caso.
-- Interfaz optimizada para proyector y funcionamiento sin internet.
+</div>
 
-## Demo y branding en GitHub
+<br />
 
-- Prompts de generacion visual: [branding/GEMINI-NANO-BANANA-PROMPTS.md](branding/GEMINI-NANO-BANANA-PROMPTS.md)
-- Branding activo en el repo:
-  - `assets/github/logo-sena-alertaed.png`
-  - `assets/github/cover-sena-alertaed.png`
+![Cover](assets/github/cover-sena-alertaed.png)
 
-## Estado tecnico
+<br />
 
-- Build validado.
-- TypeScript sin errores.
-- Recursos locales (imagen/video) funcionando en modo offline.
-- Estructura de proyecto preparada para despliegue en Vercel.
+## Qué es
+
+Dashboard interactivo construido como pitch académico/profesional para presentar **ALERTA-ED**: una propuesta de sistema predictivo que detecta riesgo de abandono escolar antes de que sea irreversible.
+
+La experiencia emula un producto real: onboarding con IA, visualizaciones de datos, narrativa de negocio y panel de administración con persistencia local.
+
+---
+
+## Características
+
+| Feature | Descripción |
+|---|---|
+| **Onboarding SENA** | La mascota IA identifica tu rol (docente, director, investigador, emprendedor) y personaliza la vista |
+| **8 secciones narrativas** | Problema → Solución → Fricciones → Personas → Escenarios → Impacto → Reflexión |
+| **Datos EN VIVO** | Panel de riesgo con animación en tiempo real, actualización cada 4 segundos |
+| **Panel de admin** | Drawer lateral para editar todo el contenido, persistido en `localStorage` |
+| **Modo claro/oscuro** | Toggle instantáneo sin recarga de página |
+| **Exportar como PNG** | Captura el dashboard completo en alta resolución |
+| **Navegación por teclado** | Flechas `↑ ↓` y teclas `1–8` para navegar entre secciones |
+| **100% offline** | Sin APIs externas, sin Google Fonts, funciona sin internet |
+
+---
 
 ## Stack
 
-- Vite 5
-- React 18
-- TypeScript 5
-- Tailwind CSS 3
-- Framer Motion 11
-- Lucide React
+| Tecnología | Versión | Propósito |
+|---|---|---|
+| [Vite](https://vitejs.dev/) | 5.x | Build tool y dev server |
+| [React](https://react.dev/) | 18.x | UI library |
+| [TypeScript](https://www.typescriptlang.org/) | 5.x | Type safety |
+| [Tailwind CSS](https://tailwindcss.com/) | 3.x | Estilos utility-first |
+| [Framer Motion](https://www.framer.com/motion/) | 11.x | Animaciones y transiciones |
+| [Lucide React](https://lucide.dev/) | latest | Iconografía |
+| [html2canvas](https://html2canvas.hertzen.com/) | 1.x | Exportación a PNG (lazy-loaded) |
 
-## Estructura del repositorio
+---
 
-- `dashboard/`: aplicacion frontend principal.
-- `design-system/`: sistema de diseno, tokens y reglas visuales.
-- `tasks/`: seguimiento de tareas.
-- `AGENT-SYNC.md`: bitacora de sesiones y handoffs.
-- `CLAUDE.md`: arquitectura y lineamientos operativos.
-
-## Ejecutar localmente
+## Inicio rápido
 
 ```bash
-cd dashboard
+# 1. Clonar el repositorio
+git clone https://github.com/EiTinchoZ/SENA.git
+cd SENA/dashboard
+
+# 2. Instalar dependencias
 npm install
+
+# 3. Iniciar servidor de desarrollo
 npm run dev
+# → http://localhost:5173
 ```
 
-Build de produccion:
+**Build de producción:**
 
 ```bash
-cd dashboard
-npm run build
-npm run preview
+npm run build    # genera dashboard/dist/
+npm run preview  # previsualiza el build
 ```
 
-## Deploy en Vercel
+> **Nota sobre assets:** las imágenes y videos de personas van en `dashboard/public/assets/`. Sin ellos la app funciona con estados de fallback visuales.
 
-Configuracion recomendada:
+---
 
-- Root Directory: `dashboard`
-- Framework Preset: `Vite`
-- Build Command: `npm run build`
-- Output Directory: `dist`
+## Estructura del proyecto
 
-## Seguridad y propiedad intelectual
+```
+SENA/
+├── dashboard/               # Aplicación Vite + React
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── admin/       # AdminPanel y AdminToggle (drawer editable)
+│   │   │   ├── layout/      # Navigation y ScrollProgress
+│   │   │   ├── onboarding/  # SenaOnboarding, SenaAvatar
+│   │   │   ├── sections/    # 8 secciones del dashboard
+│   │   │   └── ui/          # RiskSignal, AlertTimeline, ExportButton…
+│   │   ├── context/         # AdminContext (estado global con localStorage)
+│   │   ├── data/            # Datos estáticos del proyecto
+│   │   ├── hooks/           # useScrollSpy, useKeyboardNavigation…
+│   │   └── types/           # Tipos TypeScript
+│   └── public/assets/       # Imágenes y videos (no incluidos en repo)
+├── design-system/           # Sistema de diseño y tokens
+├── assets/github/           # Branding del repositorio
+└── docs/                    # Documentación técnica interna
+```
 
-Este repositorio se publica para demostracion, manteniendo propiedad intelectual del autor.
+---
 
-- [LICENSE](LICENSE)
-- [NOTICE](NOTICE)
-- [SECURITY.md](SECURITY.md)
-- [CONTRIBUTING.md](CONTRIBUTING.md)
+## Despliegue
 
-No se permite uso, copia, modificacion, redistribucion ni explotacion comercial sin autorizacion expresa y por escrito del titular.
+El proyecto se despliega automáticamente en **GitHub Pages** al hacer push a `main`.
 
-## Autor
+Para deploy manual en Vercel:
 
-- Martin Bundy
+| Campo | Valor |
+|---|---|
+| Root Directory | `dashboard` |
+| Framework Preset | Vite |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+
+---
+
+## Licencia y autoría
+
+Desarrollado por **Martín Bundy** — [@EiTinchoZ](https://github.com/EiTinchoZ)
+
+Publicado para demostración académica. Todos los derechos reservados.
+No se permite uso, copia, modificación o distribución sin autorización expresa del autor.
+
+Ver [LICENSE](LICENSE) · [NOTICE](NOTICE) · [SECURITY.md](SECURITY.md)
+
+---
+
+<div align="center">
+  <sub>ALERTA-ED — Proyecto académico / Emprendimiento Digital · 2026</sub>
+</div>

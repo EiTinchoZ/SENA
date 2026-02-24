@@ -7,16 +7,16 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Cpu, Heart, CheckCircle, Target } from 'lucide-react';
 import { SectionWrapper, SectionHeader } from '@/components/ui/SectionWrapper';
-import { proyectoData } from '@/data/project';
-import { personas } from '@/data/personas';
+import { useAdmin } from '@/context/AdminContext';
 import { badgeVariantClasses, cn } from '@/lib/utils';
 
 export function Reflexion() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
-  const { reflexion } = proyectoData;
-  const personaViable = personas.find((p) => p.id === reflexion.personaMasViable.personaId);
+  const { content } = useAdmin();
+  const { reflexion } = content.proyecto;
+  const personaViable = content.personas.find((p) => p.id === reflexion.personaMasViable.personaId);
 
   return (
     <SectionWrapper id="reflexion" className="bg-[#04080F]">

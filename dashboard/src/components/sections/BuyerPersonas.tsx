@@ -8,7 +8,7 @@ import { motion, useInView } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { SectionWrapper, SectionHeader } from '@/components/ui/SectionWrapper';
 import { PersonaModal } from './PersonaModal';
-import { personas } from '@/data/personas';
+import { useAdmin } from '@/context/AdminContext';
 import { badgeVariantClasses, cn } from '@/lib/utils';
 import type { PersonaData, SenaProfile } from '@/types';
 
@@ -20,6 +20,9 @@ export function BuyerPersonas({ profile }: BuyerPersonasProps) {
   const [selectedPersona, setSelectedPersona] = useState<PersonaData | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
+
+  const { content } = useAdmin();
+  const personas = content.personas;
 
   return (
     <>

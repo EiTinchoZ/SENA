@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { TrendingUp, Clock, MessageSquare, ShieldCheck, Bell, Target, Building2, School, BookOpen, GraduationCap, Heart } from 'lucide-react';
 import { SectionWrapper, SectionHeader } from '@/components/ui/SectionWrapper';
-import { proyectoData } from '@/data/project';
+import { useAdmin } from '@/context/AdminContext';
 import { signalToTextColor, signalToBgMuted, signalToBorder, cn } from '@/lib/utils';
 
 const METRIC_ICONS = {
@@ -97,7 +97,8 @@ export function Impacto() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
-  const { metricas } = proyectoData;
+  const { content } = useAdmin();
+  const { metricas } = content.proyecto;
 
   return (
     <SectionWrapper id="impacto" className="bg-[#080E1A]">
@@ -195,7 +196,7 @@ export function Impacto() {
       </div>
 
       {/* Mercado potencial — clientes objetivo */}
-      {proyectoData.clientesObjetivo && (
+      {content.proyecto.clientesObjetivo && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -207,7 +208,7 @@ export function Impacto() {
             <h3 className="text-lg font-bold text-[#EFF6FF]">Mercado potencial</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
-            {proyectoData.clientesObjetivo.map((cliente, idx) => {
+            {content.proyecto.clientesObjetivo.map((cliente, idx) => {
               const Icon = CLIENTE_ICONS[cliente.id as keyof typeof CLIENTE_ICONS] ?? Building2;
               const config = CLIENTE_CONFIG[cliente.tipo];
               return (

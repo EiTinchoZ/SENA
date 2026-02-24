@@ -1,10 +1,10 @@
 // ============================================================
-// ALERTA-ED — RiskSignal
-// Componente único: indicador visual de riesgo con animación
-// Usado en el Hero como "Mission Control panel"
+// ALERTA-ED — RiskSignal + RiskPanel
+// Indicador de riesgo con animación de número en tiempo real
 // ============================================================
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 type SignalLevel = 'danger' | 'warning' | 'safe';
@@ -97,9 +97,20 @@ export function RiskSignal({
         </span>
       </div>
 
-      {/* Valor principal */}
-      <div className={cn('text-4xl font-black font-mono leading-none mb-1', config.textColor)}>
-        {valor}
+      {/* Valor principal con AnimatePresence para transición suave */}
+      <div className={cn('text-4xl font-black font-mono leading-none mb-1 overflow-hidden h-10', config.textColor)}>
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.span
+            key={String(valor)}
+            initial={{ opacity: 0, y: -14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 14 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="block"
+          >
+            {valor}
+          </motion.span>
+        </AnimatePresence>
       </div>
 
       {/* Sublabel */}
@@ -112,17 +123,70 @@ export function RiskSignal({
   );
 }
 
-// ─── Panel de 3 señales ──────────────────────────────────────
-interface RiskPanelProps {
+// ─── Panel de 3 señales con datos en tiempo real ─────────────
+export interface RiskPanelProps {
   className?: string;
+  initialDanger?: number;
+  initialWarning?: number;
+  initialSafe?: number;
 }
 
-export function RiskPanel({ className }: RiskPanelProps) {
+function clamp(val: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, val));
+}
+
+function randDelta(range: number): number {
+  return Math.round((Math.random() - 0.5) * 2 * range);
+}
+
+export function RiskPanel({
+  className,
+  initialDanger = 23,
+  initialWarning = 147,
+  initialSafe = 89,
+}: RiskPanelProps) {
+  const [danger, setDanger] = useState(initialDanger);
+  const [warning, setWarning] = useState(initialWarning);
+  const [safe, setSafe] = useState(initialSafe);
+  const [lastUpdate, setLastUpdate] = useState(0);
+
+  // Actualizar números cada 4 segundos simulando datos en vivo
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDanger((prev) => clamp(prev + randDelta(2), 15, 35));
+      setWarning((prev) => clamp(prev + randDelta(3), 120, 180));
+      setSafe((prev) => clamp(prev + randDelta(2), 70, 110));
+      setLastUpdate(0);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Contador regresivo "actualizado hace X seg"
+  useEffect(() => {
+    const counter = setInterval(() => {
+      setLastUpdate((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(counter);
+  }, []);
+
   return (
     <div className={cn('flex flex-col gap-3', className)}>
-      <p className="text-xs font-semibold text-[#3D6080] uppercase tracking-widest mb-1">
-        Monitor de riesgo activo
-      </p>
+      {/* Header con badge EN VIVO */}
+      <div className="flex items-center justify-between mb-1">
+        <p className="text-xs font-semibold text-[#3D6080] uppercase tracking-widest">
+          Monitor de riesgo activo
+        </p>
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+          </span>
+          <span className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-wider">
+            En vivo
+          </span>
+        </div>
+      </div>
+
       <motion.div
         initial="hidden"
         animate="visible"
@@ -138,7 +202,7 @@ export function RiskPanel({ className }: RiskPanelProps) {
         >
           <RiskSignal
             nivel="danger"
-            valor="23"
+            valor={danger}
             label="Riesgo Alto"
             sublabel="Requieren intervención inmediata"
           />
@@ -149,7 +213,7 @@ export function RiskPanel({ className }: RiskPanelProps) {
         >
           <RiskSignal
             nivel="warning"
-            valor="147"
+            valor={warning}
             label="Riesgo Medio"
             sublabel="En observación activa"
           />
@@ -160,14 +224,15 @@ export function RiskPanel({ className }: RiskPanelProps) {
         >
           <RiskSignal
             nivel="safe"
-            valor="89"
+            valor={safe}
             label="En Seguimiento"
             sublabel="Intervenidos, con progreso"
           />
         </motion.div>
       </motion.div>
+
       <p className="text-[11px] text-[#3D6080] mt-1 font-mono">
-        * Métricas propuestas — no representan datos reales
+        Actualizado hace {lastUpdate}s &middot; Métricas propuestas
       </p>
     </div>
   );

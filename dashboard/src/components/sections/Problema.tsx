@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { AlertTriangle, TrendingDown } from 'lucide-react';
 import { SectionWrapper, SectionHeader } from '@/components/ui/SectionWrapper';
-import { proyectoData } from '@/data/project';
+import { useAdmin } from '@/context/AdminContext';
 import { cn } from '@/lib/utils';
 
 const NIVEL_CONFIG = {
@@ -46,7 +46,8 @@ export function Problema() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
-  const { oportunidades } = proyectoData;
+  const { content } = useAdmin();
+  const { oportunidades } = content.proyecto;
   const criticos = oportunidades.filter((o) => o.nivel === 'critico');
   const altos = oportunidades.filter((o) => o.nivel === 'alto');
   const medios = oportunidades.filter((o) => o.nivel === 'medio');
@@ -159,7 +160,7 @@ export function Problema() {
       </motion.div>
 
       {/* Consecuencias negativas — si no intervenimos */}
-      {proyectoData.consecuenciasNegativas && (
+      {content.proyecto.consecuenciasNegativas && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -178,7 +179,7 @@ export function Problema() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
-            {proyectoData.consecuenciasNegativas.map((consecuencia, i) => (
+            {content.proyecto.consecuenciasNegativas.map((consecuencia, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 12 }}

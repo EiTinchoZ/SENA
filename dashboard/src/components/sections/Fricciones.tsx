@@ -7,7 +7,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { User, Users, BookOpen, Building2 } from 'lucide-react';
 import { SectionWrapper, SectionHeader } from '@/components/ui/SectionWrapper';
-import { friccionesData } from '@/data/fricciones';
+import { useAdmin } from '@/context/AdminContext';
 import { cn } from '@/lib/utils';
 import type { ActorId } from '@/types';
 
@@ -29,6 +29,8 @@ export function Fricciones() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
+  const { content } = useAdmin();
+  const friccionesData = content.fricciones;
   const activeActor = friccionesData.find((a) => a.id === activeTab)!;
 
   return (

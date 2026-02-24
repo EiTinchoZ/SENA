@@ -3,35 +3,37 @@
 
 ---
 
-## EN PROGRESO
+## COMPLETADO
 
 - [x] Documentación base (CLAUDE.md, AGENT-SYNC.md, design-system, tasks)
 - [x] Configuración del proyecto (package.json, vite, tailwind, tsconfig)
 - [x] Tipos base (types/index.ts)
 - [x] Datos del proyecto (data/)
-- [x] Hooks (useScrollSpy, useOnboarding)
-- [x] Componentes UI (RiskSignal, AlertTimeline, SectionWrapper)
+- [x] Hooks (useScrollSpy, useOnboarding, useKeyboardNavigation)
+- [x] Componentes UI (RiskSignal, AlertTimeline, SectionWrapper, KeyboardHint, ExportButton)
 - [x] Layout (Navigation, ScrollProgress)
 - [x] SENA Onboarding (SenaOnboarding, SenaAvatar, OnboardingQuestion)
 - [x] Secciones (Hero, Problema, Solucion, Fricciones, BuyerPersonas, PersonaModal, Escenarios, Impacto, Reflexion)
 - [x] App.tsx + main.tsx + index.css
+- [x] Modo claro (light mode) con CSS filter invert + hue-rotate
+- [x] Exportar dashboard como PNG (html2canvas, lazy-loaded)
+- [x] Navegación por teclado (flechas + teclas 1-8)
+- [x] Animación de datos en tiempo real en RiskPanel (EN VIVO)
+- [x] Panel de admin (AdminContext + AdminPanel + AdminToggle, localStorage)
 
 ---
 
 ## PENDIENTE USUARIO
 
-- [ ] Agregar assets de personas (persona1.png/mp4, persona2.png/mp4, persona3.png/mp4) a `dashboard/public/assets/`
-- [ ] Reemplazar contenido placeholder en `src/data/personas.ts` con narrativas reales
-- [ ] Reemplazar contenido placeholder en `src/data/project.ts` con reflexión real y datos reales
-- [ ] Reemplazar contenido placeholder en `src/data/fricciones.ts` con fricciones reales
-- [ ] Revisar y confirmar nombres de las 3 personas (actualmente: María González, Carlos Mejía, Ana Restrepo)
+~~1. Pegar assets de personas~~ ✅ Completado sesión 003
+~~2. Pegar videos de personas~~ ✅ Completado sesión 003
+~~3. Contenido real de personas~~ ✅ Completado sesión 002
+~~4. Narrativas y reflexión~~ ✅ Completado sesión 002
 
 ---
 
-## BACKLOG (futuras mejoras)
+## BACKLOG (opcional, baja prioridad)
 
-- [ ] Modo claro (light mode) para presentaciones en sala iluminada
-- [ ] Exportar sección como imagen (screenshot)
-- [ ] Navegación por teclado (flechas) entre secciones para presentación
-- [ ] Animación de datos en tiempo real (simulada) en el Hero
-- [ ] Panel de admin: editar contenido desde UI sin tocar código
+- [ ] Navegación por teclado en modo presentación: mostrar número de sección actual en overlay
+- [ ] Panel de admin: editar criterios de la persona más viable para validar
+- [ ] Modo presentación full-screen (ocultar scrollbar, cursor, etc.)
