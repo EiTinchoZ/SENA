@@ -128,12 +128,12 @@ export function PersonaModal({ persona, onClose }: PersonaModalProps) {
                   </div>
 
                   {/* Video */}
-                  <div className="group relative rounded-xl overflow-hidden bg-[#0C1525] border border-[#1E2E48] hover:border-indigo-500/35 transition-colors aspect-[4/3]">
+                  <div className="group relative rounded-xl overflow-hidden bg-black border border-[#1E2E48] hover:border-indigo-500/35 transition-colors aspect-[4/3]">
                     <video
                       src={persona.video}
                       controls
                       preload="metadata"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         const el = e.currentTarget;
                         el.style.display = 'none';
