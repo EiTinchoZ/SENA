@@ -5,6 +5,12 @@
 ![Modo](https://img.shields.io/badge/modo-100%25%20offline-0f766e)
 ![Licencia](https://img.shields.io/badge/licencia-propietaria-b91c1c)
 
+![SENA Cover](assets/github/cover-sena-alertaed.png)
+
+<p align="center">
+  <img src="assets/github/logo-sena-alertaed.png" alt="SENA Logo" width="240" />
+</p>
+
 Dashboard/presentacion web interactiva para demostrar un sistema de alerta temprana contra la desercion escolar, con enfoque preventivo, narrativa visual y UX orientada a pitch academico/profesional.
 
 ## Vision del proyecto
@@ -18,18 +24,10 @@ La experiencia integra:
 
 ## Demo y branding en GitHub
 
-Para que el repo luzca mejor en publico:
-
-1. Genera un logo y portada con los prompts de [branding/GEMINI-NANO-BANANA-PROMPTS.md](branding/GEMINI-NANO-BANANA-PROMPTS.md)
-2. Sube los archivos a `assets/github/` con estos nombres:
-   - `logo-sena-alertaed.png`
-   - `cover-sena-alertaed.png`
-3. Descomenta estas lineas:
-
-```md
-<!-- ![SENA Logo](assets/github/logo-sena-alertaed.png) -->
-<!-- ![SENA Cover](assets/github/cover-sena-alertaed.png) -->
-```
+- Prompts de generacion visual: [branding/GEMINI-NANO-BANANA-PROMPTS.md](branding/GEMINI-NANO-BANANA-PROMPTS.md)
+- Branding activo en el repo:
+  - `assets/github/logo-sena-alertaed.png`
+  - `assets/github/cover-sena-alertaed.png`
 
 ## Estado tecnico
 
