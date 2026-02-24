@@ -14,20 +14,20 @@ const PASOS = [
   {
     icon: Cpu,
     numero: '01',
-    titulo: 'Recolección y análisis',
-    descripcion: 'Asistencia, calificaciones y variables socioeconómicas.',
+    titulo: 'Recolección de datos',
+    descripcion: 'El sistema lee asistencia, notas y contexto del estudiante para construir su perfil de riesgo.',
   },
   {
     icon: Bell,
     numero: '02',
     titulo: 'Predicción con IA',
-    descripcion: 'Random Forest / XGBoost clasifica el riesgo individual.',
+    descripcion: 'Un modelo de inteligencia artificial analiza los datos y calcula qué tan probable es que el estudiante abandone.',
   },
   {
     icon: MessageSquare,
     numero: '03',
-    titulo: 'Intervención preventiva',
-    descripcion: 'Alertas a docentes + nudging a familias por WhatsApp.',
+    titulo: 'Intervención a tiempo',
+    descripcion: 'Si hay riesgo, el sistema notifica al docente y envía un mensaje a la familia para actuar antes de que sea tarde.',
   },
 ];
 
@@ -102,12 +102,29 @@ export function Hero({ profile }: HeroProps) {
               </h1>
 
               {/* Propuesta de valor */}
-              <p className="text-lg text-[#7CB3E0] leading-relaxed mb-8 max-w-xl">
-                Plataforma de IA que identifica estudiantes en riesgo de
-                deserción usando asistencia, calificaciones y variables
-                socioeconómicas, y activa intervenciones preventivas
-                personalizadas.
+              <p className="text-lg text-[#7CB3E0] leading-relaxed mb-4 max-w-xl">
+                Sistema de inteligencia artificial que monitorea señales de
+                riesgo académico en tiempo real. Cuando detecta que un
+                estudiante puede abandonar, notifica al docente y a la familia
+                para intervenir a tiempo — antes de que sea irreversible.
               </p>
+
+              {/* Contexto estudiante */}
+              {profile?.role === 'estudiante' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25, duration: 0.4 }}
+                  className="mb-6 bg-cyan-500/8 border border-cyan-500/20 rounded-xl p-4 max-w-xl"
+                >
+                  <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-1.5">Para ti, estudiante</p>
+                  <p className="text-sm text-[#7CB3E0] leading-relaxed">
+                    Este sistema analiza factores como tu asistencia y calificaciones
+                    para detectar si necesitas apoyo. El objetivo: que ningún
+                    compañero abandone sus estudios sin que alguien lo note primero.
+                  </p>
+                </motion.div>
+              )}
 
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-4 mb-12">
@@ -180,7 +197,8 @@ function getPersonalizedGreeting(profile: SenaProfile): string {
     director:     'Vista directiva activa — Marta González es tu perfil de referencia',
     investigador: 'Vista investigador activa — datos completos del modelo habilitados',
     emprendedor:  'Vista emprendedor activa — mercado y diferenciación destacados',
-    otro:         'Vista estudiante activa — Carlos Mendoza es tu perfil de referencia',
+    estudiante:   'Vista estudiante activa — Carlos Mendoza es tu perfil de referencia',
+    otro:         'Vista general activa — Carlos Mendoza es tu perfil de referencia',
   };
   return map[profile.role] ?? 'Bienvenido a ALERTA-ED';
 }

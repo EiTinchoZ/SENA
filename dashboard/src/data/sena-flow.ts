@@ -46,6 +46,11 @@ export const senaSteps: SenaFlowStep[] = [
           label: 'Emprendedor o Inversor',
           descripcion: 'Evalúo soluciones tecnológicas para el sector educativo',
         },
+        {
+          valor: 'estudiante',
+          label: 'Estudiante',
+          descripcion: 'Soy estudiante y quiero entender cómo funciona este sistema',
+        },
       ],
     },
   },
@@ -156,6 +161,23 @@ export const pregunta1Options: Record<UserRole, { valor: string; label: string; 
       descripcion: 'Modelo híbrido o freemium',
     },
   ],
+  estudiante: [
+    {
+      valor: 'en_riesgo',
+      label: 'A veces falto o me cuesta mantener el ritmo académico',
+      descripcion: 'Reconozco que hay momentos difíciles en mi trayectoria',
+    },
+    {
+      valor: 'companero',
+      label: 'Conozco compañeros que abandonaron o estuvieron cerca de hacerlo',
+      descripcion: 'Vi de cerca cómo afecta la deserción',
+    },
+    {
+      valor: 'curioso',
+      label: 'Estudio tecnología o IA y me interesa esta aplicación',
+      descripcion: 'Quiero entender cómo funciona el modelo técnico',
+    },
+  ],
   otro: [
     {
       valor: 'general',
@@ -244,6 +266,23 @@ export const pregunta2Options: Record<UserRole, { valor: string; label: string; 
       descripcion: 'Ventaja competitiva defendible',
     },
   ],
+  estudiante: [
+    {
+      valor: 'proteccion',
+      label: 'Que el sistema me ayude a mí o a mis compañeros a no quedar fuera',
+      descripcion: 'Apoyo real antes de que sea demasiado tarde',
+    },
+    {
+      valor: 'transparencia',
+      label: 'Entender qué datos usa y cómo funciona la IA',
+      descripcion: 'Sin tecnicismos, de forma clara y honesta',
+    },
+    {
+      valor: 'impacto',
+      label: 'Ver el impacto real en personas como yo',
+      descripcion: 'Historias concretas, no solo estadísticas',
+    },
+  ],
   otro: [
     {
       valor: 'comprension',
@@ -275,6 +314,7 @@ export function generateProfile(
     director:     3, // → Marta González (coordinadora académica)
     investigador: 2, // → foco técnico, similar al docente
     emprendedor:  3, // → foco institucional/escalabilidad
+    estudiante:   1, // → Carlos Mendoza (estudiante en riesgo)
     otro:         1, // → Carlos Mendoza (estudiante en riesgo)
   };
 
@@ -287,6 +327,8 @@ export function generateProfile(
       'Voy a enfatizar la arquitectura del modelo de IA (Random Forest / XGBoost), las variables utilizadas, la metodología de predicción y las métricas de evaluación del sistema.',
     emprendedor:
       'Te voy a mostrar la propuesta de valor del sistema, el diferenciador frente al mercado, las métricas de adopción y el potencial de escalabilidad en instituciones públicas como el ITSE.',
+    estudiante:
+      'Te voy a mostrar el sistema a través de la historia de Carlos Mendoza, un estudiante como tú: cómo el sistema detecta las señales de riesgo y cómo una intervención a tiempo puede cambiar el resultado.',
     otro:
       'Te voy a mostrar el sistema a través de la historia de Carlos Mendoza: cómo el patrón de riesgo se forma, cómo se detecta y cómo una intervención a tiempo cambia el resultado.',
   };
@@ -310,6 +352,8 @@ export const senaResponses: Record<string, string> = {
     'Excelente. Te voy a mostrar la arquitectura técnica con más detalle.',
   'rol:emprendedor':
     'Bien. Me voy a enfocar en el modelo de negocio y el potencial del mercado.',
+  'rol:estudiante':
+    'Bienvenido. Este sistema existe para proteger a estudiantes como tú. Te lo explico desde adentro.',
   'rol:otro':
     'Entendido. Te mostraré el sistema desde su dimensión humana y de impacto.',
 };

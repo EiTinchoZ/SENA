@@ -28,6 +28,7 @@ const ROLE_LABELS: Record<string, string> = {
   director:     'Vista: Director',
   investigador: 'Vista: Investigador',
   emprendedor:  'Vista: Emprendedor',
+  estudiante:   'Vista: Estudiante',
   otro:         'Vista: General',
 };
 

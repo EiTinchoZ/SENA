@@ -14,11 +14,12 @@ import { cn } from '@/lib/utils';
 import type { UserRole } from '@/types';
 
 const ROLE_LABELS: Record<UserRole, string> = {
-  docente: 'Docente / Tutor',
-  director: 'Director / Rector',
+  docente:      'Docente / Tutor',
+  director:     'Director / Rector',
   investigador: 'Investigador / Académico',
-  emprendedor: 'Emprendedor / Inversor',
-  otro: 'Otro perfil',
+  emprendedor:  'Emprendedor / Inversor',
+  estudiante:   'Estudiante',
+  otro:         'Otro perfil',
 };
 
 const ROLE_COLORS: Record<UserRole, string> = {
@@ -26,6 +27,7 @@ const ROLE_COLORS: Record<UserRole, string> = {
   director:     'text-amber-400',
   investigador: 'text-purple-400',
   emprendedor:  'text-emerald-400',
+  estudiante:   'text-cyan-400',
   otro:         'text-gray-400',
 };
 
@@ -145,6 +147,7 @@ export function SenaOnboarding({ onComplete }: SenaOnboardingProps) {
                   { valor: 'director', label: 'Director o Rector', descripcion: 'Gestiono una institución educativa' },
                   { valor: 'investigador', label: 'Investigador o Académico', descripcion: 'Estudio el problema desde la academia' },
                   { valor: 'emprendedor', label: 'Emprendedor o Inversor', descripcion: 'Evalúo soluciones tecnológicas para educación' },
+                  { valor: 'estudiante', label: 'Estudiante', descripcion: 'Soy estudiante y quiero entender cómo funciona este sistema' },
                 ]}
                 selected={answers['rol']}
                 onSelect={(v) => selectAnswer('rol', v)}
@@ -347,6 +350,11 @@ function getHighlights(role: UserRole): string[] {
       'La propuesta de valor y el diferenciador del mercado',
       'Las métricas de adopción y el modelo de negocio',
       'El potencial de escalabilidad en LATAM',
+    ],
+    estudiante: [
+      'La historia de Carlos Mendoza: un estudiante como tú en riesgo real',
+      'Cómo el sistema detecta señales de alerta sin que lo notes',
+      'Qué pasa después: quién recibe la alerta y cómo te ayudan',
     ],
     otro: [
       'El problema de la deserción desde una perspectiva humana',

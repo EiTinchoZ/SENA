@@ -3,7 +3,7 @@
 // ============================================================
 
 // ─── Roles de usuario (personalización por SENA) ────────────
-export type UserRole = 'docente' | 'director' | 'investigador' | 'emprendedor' | 'otro';
+export type UserRole = 'docente' | 'director' | 'investigador' | 'emprendedor' | 'estudiante' | 'otro';
 
 // ─── Perfil generado por el onboarding de SENA ──────────────
 export interface SenaProfile {
