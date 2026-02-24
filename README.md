@@ -1,14 +1,12 @@
 <div align="center">
 
-<img src="assets/github/logo-sena-alertaed.png" alt="ALERTA-ED" width="80" />
-
 # ALERTA-ED
 
-**Sistema de Alerta Temprana para la Deserción Escolar**
+**Early Warning System for School Dropout Prevention**
 
-[**Ver demo en vivo →**](https://sena-snowy.vercel.app/)
+[**Live Demo →**](https://sena-snowy.vercel.app/)
 &nbsp;·&nbsp;
-[Reportar problema](https://github.com/EiTinchoZ/SENA/issues)
+[Report an issue](https://github.com/EiTinchoZ/SENA/issues)
 
 <br />
 
@@ -17,7 +15,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white&style=flat-square)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white&style=flat-square)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-EF0080?logo=framer&logoColor=white&style=flat-square)
-![Estado](https://img.shields.io/badge/estado-listo%20para%20presentar-16a34a?style=flat-square)
+![Status](https://img.shields.io/badge/status-ready%20to%20present-16a34a?style=flat-square)
 ![Offline](https://img.shields.io/badge/100%25-offline-0f766e?style=flat-square)
 
 </div>
@@ -28,100 +26,99 @@
 
 <br />
 
-## Qué es
+## What is it
 
-Dashboard interactivo construido como pitch académico/profesional para presentar **ALERTA-ED**: una propuesta de sistema predictivo que detecta riesgo de abandono escolar antes de que sea irreversible.
+An interactive dashboard built as an academic/professional pitch for **ALERTA-ED**: a proposed predictive system that detects school dropout risk before it becomes irreversible.
 
-La experiencia emula un producto real: onboarding con IA, visualizaciones de datos, narrativa de negocio y panel de administración con persistencia local.
+The experience emulates a real product: AI onboarding, data visualizations, business narrative, and an admin panel with local persistence.
 
 ---
 
-## Características
+## Features
 
-| Feature | Descripción |
+| Feature | Description |
 |---|---|
-| **Onboarding SENA** | La mascota IA identifica tu rol (docente, director, investigador, emprendedor) y personaliza la vista |
-| **8 secciones narrativas** | Problema → Solución → Fricciones → Personas → Escenarios → Impacto → Reflexión |
-| **Datos EN VIVO** | Panel de riesgo con animación en tiempo real, actualización cada 4 segundos |
-| **Panel de admin** | Drawer lateral para editar todo el contenido, persistido en `localStorage` |
-| **Modo claro/oscuro** | Toggle instantáneo sin recarga de página |
-| **Exportar como PNG** | Captura el dashboard completo en alta resolución |
-| **Navegación por teclado** | Flechas `↑ ↓` y teclas `1–8` para navegar entre secciones |
-| **100% offline** | Sin APIs externas, sin Google Fonts, funciona sin internet |
+| **SENA Onboarding** | AI mascot identifies your role (teacher, principal, researcher, entrepreneur) and personalizes the view |
+| **8 narrative sections** | Problem → Solution → Frictions → Personas → Scenarios → Impact → Reflection |
+| **LIVE data** | Risk panel with real-time animation, updates every 4 seconds |
+| **Admin panel** | Side drawer to edit all content, persisted in `localStorage` |
+| **Light / dark mode** | Instant toggle without page reload |
+| **Export as PNG** | Captures the full dashboard in high resolution |
+| **Keyboard navigation** | Arrow keys `↑ ↓` and keys `1–8` to jump between sections |
+| **100% offline** | No external APIs, no Google Fonts, works without internet |
 
 ---
 
 ## Stack
 
-| Tecnología | Versión | Propósito |
+| Technology | Version | Purpose |
 |---|---|---|
-| [Vite](https://vitejs.dev/) | 5.x | Build tool y dev server |
+| [Vite](https://vitejs.dev/) | 5.x | Build tool & dev server |
 | [React](https://react.dev/) | 18.x | UI library |
 | [TypeScript](https://www.typescriptlang.org/) | 5.x | Type safety |
-| [Tailwind CSS](https://tailwindcss.com/) | 3.x | Estilos utility-first |
-| [Framer Motion](https://www.framer.com/motion/) | 11.x | Animaciones y transiciones |
-| [Lucide React](https://lucide.dev/) | latest | Iconografía |
-| [html2canvas](https://html2canvas.hertzen.com/) | 1.x | Exportación a PNG (lazy-loaded) |
+| [Tailwind CSS](https://tailwindcss.com/) | 3.x | Utility-first styling |
+| [Framer Motion](https://www.framer.com/motion/) | 11.x | Animations & transitions |
+| [Lucide React](https://lucide.dev/) | latest | Icons |
+| [html2canvas](https://html2canvas.hertzen.com/) | 1.x | PNG export (lazy-loaded) |
 
 ---
 
-## Inicio rápido
+## Quick start
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clone the repository
 git clone https://github.com/EiTinchoZ/SENA.git
 cd SENA/dashboard
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 npm install
 
-# 3. Iniciar servidor de desarrollo
+# 3. Start development server
 npm run dev
 # → http://localhost:5173
 ```
 
-**Build de producción:**
+**Production build:**
 
 ```bash
-npm run build    # genera dashboard/dist/
-npm run preview  # previsualiza el build
+npm run build    # outputs to dashboard/dist/
+npm run preview  # preview the build locally
 ```
 
-> **Nota sobre assets:** las imágenes y videos de personas van en `dashboard/public/assets/`. Sin ellos la app funciona con estados de fallback visuales.
+> **About assets:** persona images and videos go in `dashboard/public/assets/`. Without them the app works with visual fallback states.
 
 ---
 
-## Estructura del proyecto
+## Project structure
 
 ```
 SENA/
-├── dashboard/               # Aplicación Vite + React
+├── dashboard/               # Vite + React application
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── admin/       # AdminPanel y AdminToggle (drawer editable)
-│   │   │   ├── layout/      # Navigation y ScrollProgress
+│   │   │   ├── admin/       # AdminPanel & AdminToggle (editable drawer)
+│   │   │   ├── layout/      # Navigation & ScrollProgress
 │   │   │   ├── onboarding/  # SenaOnboarding, SenaAvatar
-│   │   │   ├── sections/    # 8 secciones del dashboard
+│   │   │   ├── sections/    # 8 dashboard sections
 │   │   │   └── ui/          # RiskSignal, AlertTimeline, ExportButton…
-│   │   ├── context/         # AdminContext (estado global con localStorage)
-│   │   ├── data/            # Datos estáticos del proyecto
+│   │   ├── context/         # AdminContext (global state with localStorage)
+│   │   ├── data/            # Static project data
 │   │   ├── hooks/           # useScrollSpy, useKeyboardNavigation…
-│   │   └── types/           # Tipos TypeScript
-│   └── public/assets/       # Imágenes y videos (no incluidos en repo)
-├── design-system/           # Sistema de diseño y tokens
-├── assets/github/           # Branding del repositorio
-└── docs/                    # Documentación técnica interna
+│   │   └── types/           # TypeScript types
+│   └── public/assets/       # Images & videos (not included in repo)
+├── design-system/           # Design system & tokens
+└── assets/github/           # Repository branding
 ```
 
 ---
 
-## Despliegue
+## Deployment
 
-El proyecto se despliega automáticamente en **GitHub Pages** al hacer push a `main`.
+The project auto-deploys to **GitHub Pages** on every push to `main`.
 
-Para deploy manual en Vercel:
+To deploy manually on Vercel:
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
 | Root Directory | `dashboard` |
 | Framework Preset | Vite |
@@ -130,17 +127,17 @@ Para deploy manual en Vercel:
 
 ---
 
-## Licencia y autoría
+## License & author
 
-Desarrollado por **Martín Bundy** — [@EiTinchoZ](https://github.com/EiTinchoZ)
+Developed by **Martín Bundy** — [@EiTinchoZ](https://github.com/EiTinchoZ)
 
-Publicado para demostración académica. Todos los derechos reservados.
-No se permite uso, copia, modificación o distribución sin autorización expresa del autor.
+Published for academic demonstration. All rights reserved.
+Use, copy, modification or distribution without the author's explicit written consent is not permitted.
 
-Ver [LICENSE](LICENSE) · [NOTICE](NOTICE) · [SECURITY.md](SECURITY.md)
+See [LICENSE](LICENSE) · [NOTICE](NOTICE) · [SECURITY.md](SECURITY.md)
 
 ---
 
 <div align="center">
-  <sub>ALERTA-ED — Proyecto académico / Emprendimiento Digital · 2026</sub>
+  <sub>ALERTA-ED — Academic project / Digital Entrepreneurship · 2026</sub>
 </div>
